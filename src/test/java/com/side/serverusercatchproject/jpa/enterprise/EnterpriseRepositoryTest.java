@@ -2,7 +2,6 @@ package com.side.serverusercatchproject.jpa.enterprise;
 
 import com.side.serverusercatchproject.modules.enterprise.entity.Enterprise;
 import com.side.serverusercatchproject.modules.enterprise.repository.EnterpriseRepository;
-import com.side.serverusercatchproject.util.status.EnterpriseStatus;
 import com.side.serverusercatchproject.util.type.RoleType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -95,7 +94,7 @@ public class EnterpriseRepositoryTest {
         enterprise.setUsername(username);
         enterprise.setPassword(password);
         enterprise.setEmail(email);
-        enterprise.setRoleType(roleType);
+        enterprise.setRole(roleType);
         enterprise.setTel(tel);
         return this.entityManager.persist(enterprise);
     }

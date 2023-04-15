@@ -2,9 +2,10 @@ package com.side.serverusercatchproject.jpa;
 
 import com.side.serverusercatchproject.modules.enterprise.entity.EnterpriseStoreInfo;
 import com.side.serverusercatchproject.modules.file.entity.FileInfo;
+import com.side.serverusercatchproject.modules.file.enums.FileType;
 import com.side.serverusercatchproject.modules.magazine.entity.Magazine;
-import com.side.serverusercatchproject.modules.magazine.repository.MagazineRepository;
 import com.side.serverusercatchproject.modules.magazine.enums.MagazineStatus;
+import com.side.serverusercatchproject.modules.magazine.repository.MagazineRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,10 @@ public class MagazineRepositoryTest {
 
     @BeforeEach
     public void init() {
-        setUp("공지사항", "내용", null, null, MagazineStatus.WAIT);
+        FileInfo fileInfo = new FileInfo();
+        fileInfo.setType(FileType.Image);
+        fileInfo.setId(3);
+        setUp("공지사항", "내용", fileInfo, null, MagazineStatus.WAIT);
     }
 
     @Test

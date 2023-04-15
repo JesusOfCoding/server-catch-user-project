@@ -4,7 +4,10 @@ package com.side.serverusercatchproject.jpa.banner;
 import com.side.serverusercatchproject.modules.banner.entity.Banner;
 import com.side.serverusercatchproject.modules.banner.enums.BannerStatus;
 import com.side.serverusercatchproject.modules.banner.repository.BannerRepository;
+import com.side.serverusercatchproject.modules.file.entity.File;
 import com.side.serverusercatchproject.modules.file.entity.FileInfo;
+import com.side.serverusercatchproject.modules.file.enums.FileStatus;
+import com.side.serverusercatchproject.modules.file.enums.FileType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +34,9 @@ public class BannerRepositoryTest {
 
     @BeforeEach
     public void init() {
-        setUp(null, LocalDateTime.of(2023,04,9,9,00),LocalDateTime.of(2023,05,9,21,00), BannerStatus.WAIT);
+        FileInfo fileInfo = setUpByFileInfo(FileType.Image);
+
+        setUpByBanner(fileInfo, LocalDateTime.of(2023,04,9,9,00),LocalDateTime.of(2023,05,9,21,00), BannerStatus.WAIT);
     }
 
     @Test
@@ -47,7 +52,7 @@ public class BannerRepositoryTest {
     @Test
     @Transactional
     void selectAndUpdate() {
-        Optional<Banner> findBanner = this.bannerRepository.findById(1);
+        Optional<Banner> findBanner = this.bannerRepository.findById(4);
 
         if(findBanner.isPresent()) {
             var result = findBanner.get();
@@ -63,9 +68,33 @@ public class BannerRepositoryTest {
         }
     }
 
+    @Test
+    @Transactional
+    void insertAndDelete() {
+        FileInfo fileInfo = setUpByFileInfo(FileType.Image);
+        Banner banner = setUpByBanner(fileInfo, LocalDateTime.of(2023, 04, 9, 9, 00), LocalDateTime.of(2023, 05, 9, 21, 00), BannerStatus.WAIT);
+        Optional<Banner> findBanner = this.bannerRepository.findById(banner.getId());
 
+        if(findBanner.isPresent()) {
+            var result = findBanner.get();
+            Assertions.assertEquals(result.getFileInfo().getType(), FileType.Image);
+            entityManager.remove(banner);
+            Optional<Banner> deleteBanner = this.bannerRepository.findById(banner.getId());
+            if (deleteBanner.isPresent()) {
+                Assertions.assertNull(deleteBanner.get());
+            }
+        } else {
+            Assertions.assertNotNull(findBanner.get());
+        }
+    }
 
-    private Banner setUp(
+    private FileInfo setUpByFileInfo(FileType fileType) {
+        var fileInfo = new FileInfo();
+        fileInfo.setType(fileType);
+        return this.entityManager.persist(fileInfo);
+    }
+
+    private Banner setUpByBanner(
             FileInfo fileInfo, LocalDateTime startTime, LocalDateTime endTime, BannerStatus status) {
         var banner = new Banner();
         banner.setFileInfo(fileInfo);

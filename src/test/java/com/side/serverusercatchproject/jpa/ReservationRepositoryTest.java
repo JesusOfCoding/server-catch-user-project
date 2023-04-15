@@ -49,7 +49,7 @@ public class ReservationRepositoryTest {
     @Test
     @Transactional
     void selectAndUpdate() {
-        var optionalNotices = this.reservationRepository.findById(1);
+        var optionalNotices = this.reservationRepository.findById(4);
 
         if(optionalNotices.isPresent()) {
             var result = optionalNotices.get();
