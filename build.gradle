@@ -67,9 +67,10 @@ hibernate {
 	}
 }
 
-bootJar {
-	dependsOn asciidoctor
-	from ("${asciidoctor.outputDir}/html5") {
-		into 'static/docs'
+bootJar{ //springboot를 이용한 jar 파일 생성 시 필요한 설정 task
+	dependsOn asciidoctor //asciidoctor 를 의존하도록 하여, bootJar 생성 전에 asciidoctor task를 수행하도록 함
+	// (jar 파일 생성 시, 문서 생성을 보장 함)
+	from("build/docs/asciidoc"){ //문서 생성 시, Jar 파일 내 static/docs 에도 복사되도록 함
+		into 'BOOT-INF/classes/static/docs'
 	}
 }

@@ -1,0 +1,168 @@
+
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+:operation-http-request-title: Example Request
+:operation-http-response-title: Example Response
+
+
+= 공지사항 문서 [권한: 관리자]
+
+== List API
+
+=== 요청 정보 [HTTP]
+include::{snippets}/notice-list/http-request.adoc[]
+
+// === 요청 정보 [Header]
+// include::{snippets}/notice-list/request-headers.adoc[]
+
+=== 요청 정보 [Query Parameter]
+include::{snippets}/notice-list/query-parameters.adoc[]
+
+=== 응답 정보 [HTTP]
+include::{snippets}/notice-list/http-response.adoc[]
+
+=== 응답 정보 [Body]
+include::{snippets}/notice-list/response-body.adoc[]
+
+=== 응답 정보
+==== [Field]
+include::{snippets}/notice-list/response-fields.adoc[]
+
+// ==== [Link]
+// include::{snippets}/notice-list/links.adoc[]
+
+
+=== CURL
+include::{snippets}/notice-list/curl-request.adoc[]
+
+
+
+== Detail API
+
+=== 요청 정보 [HTTP]
+include::{snippets}/notice-detail/http-request.adoc[]
+
+// === 요청 정보 [Header]
+// include::{snippets}/notice-detail/request-headers.adoc[]
+
+=== 요청 정보 [Path Parameter]
+include::{snippets}/notice-detail/path-parameters.adoc[]
+
+=== 응답 정보 [성공]
+==== [HTTP]
+include::{snippets}/notice-detail/http-response.adoc[]
+
+==== [Body]
+include::{snippets}/notice-detail/response-body.adoc[]
+
+==== [Field]
+include::{snippets}/notice-detail/response-fields.adoc[]
+
+// ==== [Link]
+// include::{snippets}/notice-detail/links.adoc[]
+
+=== 응답 정보 [실패]
+* 공지사항이 존재하지 않을 경우
+
+==== [fields]
+include::{snippets}/notice-fail-detail/response-fields.adoc[]
+
+=== CURL
+include::{snippets}/notice-detail/curl-request.adoc[]
+
+
+
+
+
+== Save API
+
+=== 요청 정보 [HTTP]
+include::{snippets}/notice-save/http-request.adoc[]
+
+// === 요청 정보 [Header]
+// include::{snippets}/notice-save/request-headers.adoc[]
+
+=== 요청 정보 [Request Body]
+include::{snippets}/notice-save/request-body.adoc[]
+
+=== 요청 정보 [Request Fields]
+include::{snippets}/notice-save/request-fields.adoc[]
+
+
+=== 응답 정보 [HTTP]
+include::{snippets}/notice-save/http-response.adoc[]
+
+=== 응답 정보 [Body]
+include::{snippets}/notice-save/response-body.adoc[]
+
+=== 응답 정보 [성공]
+==== [Field]
+include::{snippets}/notice-save/response-fields.adoc[]
+
+// ==== [Link]
+// include::{snippets}/notice-save/links.adoc[]
+
+=== 응답 정보 [실패]
+
+* 공지사항 제목을 입력해주세요.
+* 공지사항 내용을 입력해주세요.
+
+==== [fields]
+include::{snippets}/notice-save-fail/response-fields.adoc[]
+
+
+=== CURL
+include::{snippets}/notice-save/curl-request.adoc[]
+
+
+
+== Update API
+
+=== 요청 정보 [HTTP]
+include::{snippets}/notice-update/http-request.adoc[]
+
+// === 요청 정보 [Header]
+// include::{snippets}/notice-update/request-headers.adoc[]
+
+=== 요청 정보 [Path Parameter]
+include::{snippets}/notice-update/path-parameters.adoc[]
+
+
+=== 요청 정보 [Request Body]
+include::{snippets}/notice-update/request-body.adoc[]
+
+=== 요청 정보 [Request Fields]
+include::{snippets}/notice-update/request-fields.adoc[]
+
+
+=== 응답 정보 [HTTP]
+include::{snippets}/notice-update/http-response.adoc[]
+
+=== 응답 정보 [Body]
+include::{snippets}/notice-update/response-body.adoc[]
+
+=== 응답 정보 [성공]
+==== [Field]
+include::{snippets}/notice-update/response-fields.adoc[]
+
+
+=== 응답 정보 [실패]
+
+* 공지사항이 존재하지 않습니다.
+* 공지사항 제목을 입력해주세요.
+* 공지사항 내용을 입력해주세요.
+* 공지사항 상태 값이 이상이 있습니다. 확인해주세요.
+
+==== [fields]
+include::{snippets}/notice-update-fail/response-fields.adoc[]
+
+
+=== CURL
+include::{snippets}/notice-update/curl-request.adoc[]
