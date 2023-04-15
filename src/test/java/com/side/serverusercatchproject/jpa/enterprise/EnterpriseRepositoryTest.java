@@ -2,6 +2,7 @@ package com.side.serverusercatchproject.jpa.enterprise;
 
 import com.side.serverusercatchproject.modules.enterprise.entity.Enterprise;
 import com.side.serverusercatchproject.modules.enterprise.repository.EnterpriseRepository;
+
 import com.side.serverusercatchproject.util.type.RoleType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +31,7 @@ public class EnterpriseRepositoryTest {
 
     @BeforeEach
     public void init() {
-        setUp("aaa","1234","aaa@nate.com", RoleType.ACTIVE, "010-1234-5678");
+        setUp("aaa","1234","aaa@nate.com", RoleType.ENTERPRISE, "010-1234-5678");
     }
 
 
@@ -68,7 +69,7 @@ public class EnterpriseRepositoryTest {
     @Test
     @Transactional
     void insertAndDelete() {
-        var persist = setUp("ho","1235","aaasdfa@nate.com", RoleType.ACTIVE, "010-2342-5678");
+        var persist = setUp("ho","1235","aaasdfa@nate.com", RoleType.ENTERPRISE, "010-2342-5678");
         var findEnterprise = this.enterpriseRepository.findByUsername(persist.getUsername());
 
         if (findEnterprise.isPresent()) {

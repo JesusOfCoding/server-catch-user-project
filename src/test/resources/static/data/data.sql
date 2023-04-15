@@ -37,5 +37,5 @@ insert into USERS(username, password, role, email, tel, status) values ('권경�
 insert into RESERVATIONS(user_id, qty, store_id, reservation_term, reservation_cancel_day, push_time, active_time, reservation_price, status)
 values (1, 3, 1, '1일', '7일', '2023-03-03 00:03', '2023-03-03 01:01', 10000, 'WAIT');
 
-
+-- insert into BANNER_ENTERPRISE_LIST(bannerSort, store) values (BannerSort, EnterpriseStoreInfo);
 -- insert into BANNERS(fileInfo, startTime, endTime, status) values ('Image', '2021-01-01T00:00', '2022-01-01T12:00', 'WAIT');
