@@ -6,6 +6,7 @@ import com.side.serverusercatchproject.modules.file.entity.FileInfo;
 import com.side.serverusercatchproject.modules.review.enums.ReviewStatus;
 import com.side.serverusercatchproject.modules.user.entity.User;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -51,4 +52,19 @@ public class Review extends BaseTime {
     @Enumerated(EnumType.STRING)
     private ReviewStatus status;
 
+    @Builder
+    public Review(Integer id, User user, EnterpriseStoreInfo store, String content, Double tasteRating,
+            Double moodRating, Double serviceRating, FileInfo fileInfo, ReviewStatus status) {
+        this.id = id;
+        this.user = user;
+        this.store = store;
+        this.content = content;
+        this.tasteRating = tasteRating;
+        this.moodRating = moodRating;
+        this.serviceRating = serviceRating;
+        this.fileInfo = fileInfo;
+        this.status = status;
+    }
+
+    
 }
