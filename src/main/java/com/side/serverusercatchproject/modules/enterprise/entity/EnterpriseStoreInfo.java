@@ -25,6 +25,7 @@ public class EnterpriseStoreInfo extends BaseTime {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @Comment("기업 정보")
+    @JoinColumn(name = "enterprise_id")
     private Enterprise enterprise;
 
     @Comment("매장 이름")
@@ -50,6 +51,7 @@ public class EnterpriseStoreInfo extends BaseTime {
 
     @Comment("매장 사진 정보")
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "file_info_id")
     private FileInfo fileInfo;
 
     @Enumerated(EnumType.STRING)

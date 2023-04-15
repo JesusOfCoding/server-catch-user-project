@@ -8,6 +8,7 @@ import com.side.serverusercatchproject.modules.file.entity.FileInfo;
 import com.side.serverusercatchproject.modules.file.enums.FileType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
+@DisplayName("배너 JPA 테스트")
 public class BannerRepositoryTest {
 
     @Autowired
@@ -36,6 +38,7 @@ public class BannerRepositoryTest {
     }
 
     @Test
+    @DisplayName("배너 조회")
     void selectAll() {
         List<Banner> bannerList = bannerRepository.findAll();
         Assertions.assertNotEquals(bannerList.size(), 0);
@@ -46,6 +49,7 @@ public class BannerRepositoryTest {
 
     @Test
     @Transactional
+    @DisplayName("배너 조회 및 수정")
     void selectAndUpdate() {
         Optional<Banner> findBanner = this.bannerRepository.findById(1);
 
@@ -53,11 +57,11 @@ public class BannerRepositoryTest {
             var result = findBanner.get();
             Assertions.assertEquals(result.getStartTime(),LocalDateTime.of(2021,1,1,0,1));
 
-            var endTime = LocalDateTime.of(2022,01,01,0,00);
+            var endTime = LocalDateTime.of(2022,1,1,0,0);
             result.setEndTime(endTime);
             Banner merge = entityManager.merge(result);
 
-            Assertions.assertEquals(merge.getEndTime(),LocalDateTime.of(2022,01,01,0,00));
+            Assertions.assertEquals(merge.getEndTime(),LocalDateTime.of(2022,1,1,0,0));
         } else {
             Assertions.assertNotNull(findBanner.get());
         }
@@ -65,9 +69,9 @@ public class BannerRepositoryTest {
 
     @Test
     @Transactional
+    @DisplayName("배너 삽입 및 삭제")
     void insertAndDelete() {
-        FileInfo fileInfo = setUpByFileInfo(FileType.MENU);
-        Banner banner = setUpByBanner(LocalDateTime.of(2023, 04, 9, 9, 00), LocalDateTime.of(2023, 05, 9, 21, 00), BannerStatus.WAIT);
+        Banner banner = setUpByBanner(LocalDateTime.of(2023, 4, 9, 9, 0), LocalDateTime.of(2023, 5, 9, 21, 0), BannerStatus.WAIT);
         Optional<Banner> findBanner = this.bannerRepository.findById(banner.getId());
 
         if(findBanner.isPresent()) {
@@ -83,11 +87,6 @@ public class BannerRepositoryTest {
         }
     }
 
-    private FileInfo setUpByFileInfo(FileType fileType) {
-        var fileInfo = new FileInfo();
-        fileInfo.setType(fileType);
-        return this.entityManager.persist(fileInfo);
-    }
 
     private Banner setUpByBanner(LocalDateTime startTime, LocalDateTime endTime, BannerStatus status) {
         FileInfo fileInfo = FileInfo.builder().type(FileType.BANNER).build();

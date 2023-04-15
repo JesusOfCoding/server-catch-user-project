@@ -10,7 +10,7 @@ public record NoticeUpdateRequest(
     @NotBlank(message = "공지사항 내용을 입력해주세요.")
     String content,
     @ValueOfEnum(enumClass = NoticeStatus.class, message = "공지사항 상태 값이 이상이 있습니다. 확인해주세요.")
-    NoticeStatus status
+    String status
 ) {
 
 }

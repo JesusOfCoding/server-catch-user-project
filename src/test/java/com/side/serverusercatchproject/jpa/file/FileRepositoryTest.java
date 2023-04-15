@@ -7,6 +7,7 @@ import com.side.serverusercatchproject.modules.file.enums.FileType;
 import com.side.serverusercatchproject.modules.file.repository.FileRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
+@DisplayName("파일 JPA 테스트")
 public class FileRepositoryTest {
 
     @Autowired
@@ -36,22 +38,24 @@ public class FileRepositoryTest {
 
     @Test
     @Transactional
+    @DisplayName("파일 조회")
     void selectAll() {
         List<File> files = fileRepository.findAll();
         Assertions.assertNotEquals(files.size(), 0);
 
         File file = files.get(0);
-        Assertions.assertEquals(file.getFileName(), "image");
+        Assertions.assertEquals(file.getFileName(), "8.jpg");
     }
 
     @Test
     @Transactional
+    @DisplayName("파일 조회 및 수정")
     void selectAndUpdate() {
-        var optionalFiles = this.fileRepository.findById(4);
+        var optionalFiles = this.fileRepository.findById(1);
 
         if(optionalFiles.isPresent()) {
             var result = optionalFiles.get();
-            Assertions.assertEquals(result.getFileName(),"image");
+            Assertions.assertEquals(result.getFileName(),"8.jpg");
 
             var fileUrl = "jsadjwnqjkdnjskandjskandjka111";
             result.setFileUrl(fileUrl);
@@ -65,6 +69,7 @@ public class FileRepositoryTest {
 
     @Test
     @Transactional
+    @DisplayName("파일 삽입 및 삭제")
     void insertAndDelete() {
         FileInfo fileInfo = setUpByFileInfo(FileType.BANNER);
         File file = setUpByFile(fileInfo, "image", "jsadjwnqjkdnjskandjskandjka", FileStatus.WAIT);

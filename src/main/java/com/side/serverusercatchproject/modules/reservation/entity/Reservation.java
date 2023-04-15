@@ -25,14 +25,16 @@ public class Reservation extends BaseTime {
     private Integer id;
 
     @Comment("유저 정보")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Comment("예약 인원")
     private Integer qty;
 
     @Comment("매장 정보")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "store_id")
     private EnterpriseStoreInfo store;
 
     @Comment("예약 간격")

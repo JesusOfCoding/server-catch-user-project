@@ -1,13 +1,19 @@
 package com.side.serverusercatchproject.modules.notice.service;
 
+import com.side.serverusercatchproject.common.exception.Exception400;
 import com.side.serverusercatchproject.modules.notice.entity.Notice;
+import com.side.serverusercatchproject.modules.notice.enums.NoticeStatus;
 import com.side.serverusercatchproject.modules.notice.repository.NoticeRepository;
 import com.side.serverusercatchproject.modules.notice.request.NoticeSaveRequest;
 import com.side.serverusercatchproject.modules.notice.request.NoticeUpdateRequest;
+import jakarta.validation.Valid;
+import jakarta.validation.ValidationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
@@ -35,20 +41,11 @@ public class NoticeService {
         return noticeRepository.save(request.toEntity());
     }
 
-//    public String isValidation(NoticeUpdateRequest request) {
-//        try {
-//            NoticeStatus.valueOf(request.status());
-//        }catch (Exception e) {
-//            return "공지사항 상태 값이 이상이 있습니다. 확인해주세요.";
-//        }
-//        return "OK";
-//    }
-
     @Transactional
     public Notice update(NoticeUpdateRequest request, Notice notice) {
         notice.setTitle(request.title());
         notice.setContent(request.content());
-        notice.setStatus(request.status());
+        notice.setStatus(NoticeStatus.valueOf(request.status()));
         return noticeRepository.save(notice);
     }
 

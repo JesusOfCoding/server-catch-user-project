@@ -24,18 +24,9 @@ values ('ssar', '1234', 'ACTIVE', 'ssar@nate.com', '010-1111-1111', 'ACTIVE');
 insert into ENTERPRISE_STORE_INFO_LIST(enterprise_id, name, address, reservation_price, reservation_term, reservation_cancel_day, lat, lon, file_info_id, status)
 values (1, '매장이름1', '매장주소1', 1000, '1일', '2021-01-01 00:01', 123.123, 123.123, 1, 'OPEN');
 
+
 insert into BANNER_ENTERPRISE_LIST(banner_sort_id, store_id) values (1, 1);
 insert into BANNER_ENTERPRISE_LIST(banner_sort_id, store_id) values (2, 1);
 insert into BANNER_ENTERPRISE_LIST(banner_sort_id, store_id) values (1, 1);
-
-insert into MAGAZINE_LIST(title, content, file_info_id, store_id, status) values ('FUEGO 푸에고', '모든 메뉴를 숯불에 구워내는 우드 그릴 전문 레스토랑.', 1, 1, 'WAIT');
-insert into MAGAZINE_LIST(title, content, file_info_id, store_id, status) values ('영 셰프의 뉴웨이브 퀴진', '익숙한 재료의 색다른 요리.', 1, 1, 'WAIT');
-insert into MAGAZINE_LIST(title, content, file_info_id, store_id, status) values ('한식은 도전이다.', '새우장 밥 & 성게장 범벅.', 1, 1, 'WAIT');
-
-insert into USERS(username, password, role, email, tel, status) values ('권경렬', '1234', 'USER', 'ssar@nate.com', '010-1234-5678', 'ACTIVE');
-
-insert into RESERVATIONS(user_id, qty, store_id, reservation_term, reservation_cancel_day, push_time, active_time, reservation_price, status)
-values (1, 3, 1, '1일', '7일', '2023-03-03 00:03', '2023-03-03 01:01', 10000, 'WAIT');
-
 
 -- insert into BANNERS(fileInfo, startTime, endTime, status) values ('Image', '2021-01-01T00:00', '2022-01-01T12:00', 'WAIT');

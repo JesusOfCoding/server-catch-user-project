@@ -22,6 +22,7 @@ public class BannerSort extends BaseTime {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @Comment("배너 정보")
+    @JoinColumn(name = "banner_id")
     private Banner banner;
 
     @Comment("이름")

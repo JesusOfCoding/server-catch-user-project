@@ -1,11 +1,13 @@
 package com.side.serverusercatchproject.jpa;
 
+import com.side.serverusercatchproject.modules.file.entity.FileInfo;
+import com.side.serverusercatchproject.modules.file.enums.FileType;
+import com.side.serverusercatchproject.modules.file.repository.FileInfoRepository;
+import com.side.serverusercatchproject.modules.file.service.FileService;
 import com.side.serverusercatchproject.modules.notice.entity.Notice;
 import com.side.serverusercatchproject.modules.notice.repository.NoticeRepository;
 import com.side.serverusercatchproject.modules.notice.enums.NoticeStatus;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -13,10 +15,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
+@DisplayName("NOTICE JPA 테스트")
 public class NoticeRepositoryTest {
 
     @Autowired
@@ -24,6 +28,7 @@ public class NoticeRepositoryTest {
 
     @Autowired
     private TestEntityManager entityManager;
+
 
     @BeforeEach
     public void init() {
@@ -84,5 +89,4 @@ public class NoticeRepositoryTest {
         notice.setStatus(status);
         return this.entityManager.persist(notice);
     }
-
 }

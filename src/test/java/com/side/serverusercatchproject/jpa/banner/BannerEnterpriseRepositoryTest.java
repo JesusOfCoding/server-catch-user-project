@@ -15,10 +15,7 @@ import com.side.serverusercatchproject.modules.file.enums.FileType;
 import com.side.serverusercatchproject.util.type.RoleType;
 import jakarta.persistence.EntityManager;
 import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -33,6 +30,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
+@DisplayName("기업배너 JPA 테스트")
 public class BannerEnterpriseRepositoryTest {
 
     @Autowired
@@ -50,6 +48,7 @@ public class BannerEnterpriseRepositoryTest {
 
     @Test
     @Transactional
+    @DisplayName("기업배너 조회")
     void selectAll() {
 //        em.createNativeQuery("ALTER TABLE BANNER_ENTERPRISE_LIST ALTER COLUMN ID RESTART WITH 1").executeUpdate();
 
@@ -57,18 +56,19 @@ public class BannerEnterpriseRepositoryTest {
         Assertions.assertNotEquals(bannerEnterpriseList.size(), 0);
 
         BannerEnterprise bannerEnterprise = bannerEnterpriseList.get(0);
-        Assertions.assertEquals(bannerEnterprise.getBannerSort().getColor(), "색상");
+        Assertions.assertEquals(bannerEnterprise.getBannerSort().getColor(), "#228B22");
     }
 
     @Test
     @Transactional
+    @DisplayName("기업배너 조회 및 수정")
     void selectAndUpdate() {
         Optional<BannerEnterprise> findBannerEnterprise = this.bannerEnterpriseRepository.findById(1);
         List<BannerEnterprise> all = bannerEnterpriseRepository.findAll();
 
         if(findBannerEnterprise.isPresent()) {
             var result = findBannerEnterprise.get();
-            Assertions.assertEquals(result.getBannerSort().getColor(), "색상");
+            Assertions.assertEquals(result.getBannerSort().getColor(), "#228B22");
 
             var tel = "010-1234-4567";
             result.getStore().getEnterprise().setTel(tel);
@@ -82,6 +82,7 @@ public class BannerEnterpriseRepositoryTest {
 
     @Test
     @Transactional
+    @DisplayName("기업배너 삽입 및 삭제")
     void insertAndDelete() {
         BannerEnterprise bannerEnterprise = setUp();
         Optional<BannerEnterprise> findBannerEnterprise = this.bannerEnterpriseRepository.findById(bannerEnterprise.getId());

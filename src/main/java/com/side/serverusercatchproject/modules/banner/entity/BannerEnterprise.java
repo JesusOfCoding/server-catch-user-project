@@ -20,10 +20,12 @@ public class BannerEnterprise extends BaseTime {
 
     @Comment("배너 탭 정보")
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "banner_sort_id")
     private BannerSort bannerSort;
 
     @Comment("매장 정보")
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "store_id")
     private EnterpriseStoreInfo store;
 
     @Builder

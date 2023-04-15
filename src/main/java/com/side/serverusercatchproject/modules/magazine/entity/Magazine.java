@@ -29,10 +29,12 @@ public class Magazine extends BaseTime {
 
     @Comment("매거진 사진")
     @OneToOne
+    @JoinColumn(name = "file_info_id")
     private FileInfo fileInfo;
 
     @Comment("매장 정보")
     @ManyToOne
+    @JoinColumn(name = "store_id")
     private EnterpriseStoreInfo store;
 
     @Enumerated(EnumType.STRING)

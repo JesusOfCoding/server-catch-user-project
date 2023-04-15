@@ -3,6 +3,7 @@ package com.side.serverusercatchproject.modules.file.entity;
 
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.file.enums.FileStatus;
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import org.hibernate.annotations.Comment;
 @NoArgsConstructor
 @Table(name = "FILES")
 public class File extends BaseTime {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Comment("고유번호")
@@ -22,6 +24,7 @@ public class File extends BaseTime {
 
     @Comment("파일 출처")
     @ManyToOne
+    @JoinColumn(name = "file_info_id")
     private FileInfo fileInfo;
     
     @Comment("파일 이름")
@@ -44,4 +47,5 @@ public class File extends BaseTime {
     @Enumerated(EnumType.STRING)
     @Comment("사진 활성화 상태")
     private FileStatus status;
+
 }

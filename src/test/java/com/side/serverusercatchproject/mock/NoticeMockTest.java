@@ -8,32 +8,47 @@ import com.side.serverusercatchproject.modules.notice.enums.NoticeStatus;
 import com.side.serverusercatchproject.modules.notice.request.NoticeSaveRequest;
 import com.side.serverusercatchproject.modules.notice.request.NoticeUpdateRequest;
 import com.side.serverusercatchproject.modules.notice.service.NoticeService;
+import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
+//@SpringBootTest
 @WebMvcTest(NoticeController.class)
+@MockBean(JpaMetamodelMappingContext.class)
 public class NoticeMockTest {
 
     @Autowired
@@ -43,6 +58,14 @@ public class NoticeMockTest {
     private NoticeService noticeService;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+//
+//    Validator validator;
+//    @BeforeEach
+//    public void init () {
+//        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+//        validator = validat
+//    }
 
     @Test
     @DisplayName("공지사항 조회 (페이지)")
@@ -206,7 +229,7 @@ public class NoticeMockTest {
 
         // given
         int id = 0;
-        NoticeUpdateRequest request = new NoticeUpdateRequest("", "내용", NoticeStatus.WAIT);
+        NoticeUpdateRequest request = new NoticeUpdateRequest("", "내용", "WAIT");
 
         // When
         ResultActions perform = this.mvc.perform(
@@ -232,7 +255,7 @@ public class NoticeMockTest {
 
         // given
         int id = 0;
-        NoticeUpdateRequest request = new NoticeUpdateRequest("제목", "내용", NoticeStatus.valueOf("asdasdasdsdgood"));
+        NoticeUpdateRequest request = new NoticeUpdateRequest("제목", "내용", "asdsadsad");
 
         // When
         ResultActions perform = this.mvc.perform(
@@ -257,7 +280,7 @@ public class NoticeMockTest {
 
         // given
         int id = 0;
-        NoticeUpdateRequest request = new NoticeUpdateRequest("제목", "내용", NoticeStatus.WAIT);
+        NoticeUpdateRequest request = new NoticeUpdateRequest("제목", "내용", "WAIT");
         given(this.noticeService.getNotice(id)).willReturn(Optional.empty());
 
         // When
@@ -282,7 +305,7 @@ public class NoticeMockTest {
 
         // given
         int id = 1;
-        NoticeUpdateRequest request = new NoticeUpdateRequest("제목", "내용", NoticeStatus.WAIT);
+        NoticeUpdateRequest request = new NoticeUpdateRequest("제목", "내용", "WAIT");
 
         Optional<Notice> optional = Optional.of(new Notice(1, "공지사항(1)", "내용 1", NoticeStatus.WAIT));
         given(this.noticeService.getNotice(id)).willReturn(optional);

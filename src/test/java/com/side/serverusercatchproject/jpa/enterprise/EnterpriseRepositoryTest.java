@@ -41,18 +41,18 @@ public class EnterpriseRepositoryTest {
         Assertions.assertNotEquals(enterprises.size(), 0);
 
         Enterprise enterprise = enterprises.get(0);
-        Assertions.assertEquals(enterprise.getUsername(), "aaa");
+        Assertions.assertEquals(enterprise.getUsername(), "ssar");
     }
 
 
     @Test
     @Transactional
     void selectAndUpdate() {
-        var optionalEnterprise = findEnterprise("aaa");
+        var optionalEnterprise = findEnterprise("ssar");
 
         if (optionalEnterprise.isPresent()) {
             var result = optionalEnterprise.get();
-            Assertions.assertEquals(result.getUsername(), "aaa");
+            Assertions.assertEquals(result.getUsername(), "ssar");
 
             var tel = "010-0980-0089";
             result.setTel(tel);

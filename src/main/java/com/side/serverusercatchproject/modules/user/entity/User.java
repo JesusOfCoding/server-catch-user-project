@@ -2,9 +2,9 @@ package com.side.serverusercatchproject.modules.user.entity;
 
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.user.enums.UserStatus;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.side.serverusercatchproject.util.type.RoleType;
+import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,6 +19,7 @@ import org.hibernate.annotations.Comment;
 public class User extends BaseTime {
     @Id
     @Comment("고유번호")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Comment("유저아이디")
@@ -28,7 +29,8 @@ public class User extends BaseTime {
     private String password;
 
     @Comment("권한")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private RoleType role;
 
     @Comment("이메일")
     private String email;
@@ -37,5 +39,16 @@ public class User extends BaseTime {
     private String tel;
 
     @Comment("유저 활성화 상태")
+    @Enumerated(EnumType.STRING)
     private UserStatus status;
+
+    @Builder
+    public User(String username, String password, RoleType role, String email, String tel, UserStatus status) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.email = email;
+        this.tel = tel;
+        this.status = status;
+    }
 }

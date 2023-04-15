@@ -11,4 +11,9 @@ public class FileService {
     public FileService(FileRepository fileRepository) {
         this.fileRepository = fileRepository;
     }
+
+    public String utf(String url){
+        return url;
+    }
+
 }

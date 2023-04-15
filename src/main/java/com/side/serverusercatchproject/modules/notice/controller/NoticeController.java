@@ -69,7 +69,6 @@ public class NoticeController {
             Errors error,
             @PathVariable Integer id
     ) {
-        request.content();
         if (error.hasErrors()) {
             throw new Exception400(error.getAllErrors().get(0).getDefaultMessage());
         }

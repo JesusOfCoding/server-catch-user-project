@@ -9,6 +9,7 @@ import com.side.serverusercatchproject.modules.file.entity.FileInfo;
 import com.side.serverusercatchproject.modules.file.enums.FileType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.Optional;
 
 @DataJpaTest
 @ExtendWith(SpringExtension.class)
+@DisplayName("배너종류 JPA 테스트")
 public class BannerSortRepositoryTest {
 
     @Autowired
@@ -37,22 +39,24 @@ public class BannerSortRepositoryTest {
 
     @Test
     @Transactional
+    @DisplayName("배너종류 조회")
     void selectAll() {
         var bannerSorts = bannerSortRepository.findAll();
         Assertions.assertNotEquals(bannerSorts.size(), 0);
 
         BannerSort bannerSort = bannerSorts.get(0);
-        Assertions.assertEquals(bannerSort.getName(), "배너이름");
+        Assertions.assertEquals(bannerSort.getName(), "서울에서");
     }
 
     @Test
     @Transactional
+    @DisplayName("배너종류 조회 및 수정")
     void selectAndUpdate() {
-        var optionalBannerSorts = this.bannerSortRepository.findById(4);
+        var optionalBannerSorts = this.bannerSortRepository.findById(1);
 
         if(optionalBannerSorts.isPresent()) {
             var result = optionalBannerSorts.get();
-            Assertions.assertEquals(result.getName(),"배너이름");
+            Assertions.assertEquals(result.getName(),"서울에서");
 
             var content = "파랑색";
             result.setColor(content);
@@ -66,6 +70,7 @@ public class BannerSortRepositoryTest {
 
     @Test
     @Transactional
+    @DisplayName("배너종류 삽입 및 삭제")
     void insertAndDelete() {
 
         BannerSort bannerSort = setUpByBannerSort("배너이름2", "초록색");
