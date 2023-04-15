@@ -51,7 +51,7 @@ public class ReviewRepositoryTest {
     @Test
     @Transactional
     void selectAndUpdate() {
-        var optionalReview = reviewRepository.findById(1);
+        var optionalReview = reviewRepository.findById(4);
 
         if (optionalReview.isPresent()) {
             var result = optionalReview.get();
@@ -93,7 +93,7 @@ public class ReviewRepositoryTest {
                     .email("alss@naver.com")
                     .role(RoleType.USER)
                     .tel("01011112222")
-                    .status(UserStatus.WAIT)
+                    .status(UserStatus.ACTIVE)
                     .build();
         entityManager.persist(user);
 

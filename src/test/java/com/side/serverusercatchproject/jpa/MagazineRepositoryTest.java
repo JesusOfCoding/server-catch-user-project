@@ -95,7 +95,7 @@ public class MagazineRepositoryTest {
 
         FileInfo fileInfo = FileInfo.builder().type(FileType.MAGAZINE).build();
 
-        Enterprise enterprise = Enterprise.builder().username("기업이름").password("기업비번").role(RoleType.ACTIVE).email("이메일").tel("전화번호").status(EnterpriseStatus.ACTIVE).build();
+        Enterprise enterprise = Enterprise.builder().username("기업이름").password("기업비번").role(RoleType.USER).email("이메일").tel("전화번호").status(EnterpriseStatus.ACTIVE).build();
 
         EnterpriseStoreInfo store = EnterpriseStoreInfo.builder().enterprise(enterprise).name("매장정보").address("매장주소").reservationPrice(10000)
                 .reservationTerm("예약간격").reservationCancelDay(LocalDateTime.now()).lat(20.1).lon(20.145).fileInfo(fileInfo).status(StoreStatus.OPEN).build();

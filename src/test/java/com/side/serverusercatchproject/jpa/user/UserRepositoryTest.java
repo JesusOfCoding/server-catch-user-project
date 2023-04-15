@@ -26,7 +26,7 @@ public class UserRepositoryTest {
 
     @BeforeEach
     public void init() {
-        setUp("ssar", "1234", RoleType.USER, "ssar@nate.com", "01012341234", UserStatus.WAIT);
+        setUp("ssar", "1234", RoleType.USER, "ssar@nate.com", "01012341234", UserStatus.ACTIVE);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class UserRepositoryTest {
         Assertions.assertNotEquals(users.size(), 0);
 
         User user = users.get(0);
-        Assertions.assertEquals(user.getUsername(), "ssar");
+        Assertions.assertEquals(user.getUsername(), "권경렬");
     }
 
     @Test
@@ -45,7 +45,7 @@ public class UserRepositoryTest {
         if (optionalUser.isPresent()) {
 
             var result = optionalUser.get();
-            Assertions.assertEquals(result.getUsername(), "ssar");
+            Assertions.assertEquals(result.getUsername(), "권경렬");
 
             var username = "cos";
             result.setUsername(username);
@@ -59,7 +59,7 @@ public class UserRepositoryTest {
     @Test
     @Transactional
     public void insertAndDelete() {
-        User user = setUp("cos", "1234", RoleType.USER, "cos@nate.com", "010-1234-1234", UserStatus.WAIT);
+        User user = setUp("cos", "1234", RoleType.USER, "cos@nate.com", "010-1234-1234", UserStatus.ACTIVE);
         Optional<User> findUser = userRepository.findById(user.getId());
 
         if (findUser.isPresent()) {

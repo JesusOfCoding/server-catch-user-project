@@ -110,7 +110,7 @@ public class BannerEnterpriseRepositoryTest {
         BannerSort bannerSort = BannerSort.builder().banner(banner).name("배너이름").color("색상").build();
         entityManager.persist(bannerSort);
 
-        Enterprise enterprise = Enterprise.builder().username("기업이름").password("기업비번").role(RoleType.ACTIVE).email("이메일").tel("전화번호").status(EnterpriseStatus.ACTIVE).build();
+        Enterprise enterprise = Enterprise.builder().username("기업이름").password("기업비번").role(RoleType.USER).email("이메일").tel("전화번호").status(EnterpriseStatus.ACTIVE).build();
         entityManager.persist(enterprise);
 
         EnterpriseStoreInfo store = EnterpriseStoreInfo.builder().enterprise(enterprise).name("매장정보").address("매장주소").reservationPrice(10000).reservationTerm("예약간격").reservationCancelDay(LocalDateTime.now()).lat(20.1).lon(20.145).fileInfo(fileInfo).status(StoreStatus.OPEN).build();
