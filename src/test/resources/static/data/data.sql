@@ -12,3 +12,5 @@ insert into BANNERS(file_info_id, start_time, end_time, status) values (1, '2021
 
 -- insert into BANNER_ENTERPRISE_LIST(bannerSort, store) values (BannerSort, EnterpriseStoreInfo);
 -- insert into BANNERS(fileInfo, startTime, endTime, status) values ('Image', '2021-01-01T00:00', '2022-01-01T12:00', 'WAIT');
+
+insert into USERS(username, password, )
