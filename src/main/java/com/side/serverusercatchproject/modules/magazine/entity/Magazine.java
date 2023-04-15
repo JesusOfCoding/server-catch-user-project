@@ -3,6 +3,7 @@ package com.side.serverusercatchproject.modules.magazine.entity;
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.enterprise.entity.EnterpriseStoreInfo;
 import com.side.serverusercatchproject.modules.file.entity.FileInfo;
+import com.side.serverusercatchproject.modules.magazine.dto.MagazineDTO;
 import com.side.serverusercatchproject.modules.magazine.enums.MagazineStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -40,4 +41,9 @@ public class Magazine extends BaseTime {
     @Enumerated(EnumType.STRING)
     @Comment("매거진 활성화 상태")
     private MagazineStatus status;
+
+//    public MagazineDTO toDto() {
+//          return new MagazineDTO(title, content, fileInfo, store, status);
+//        return ;
+//    }
 }

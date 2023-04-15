@@ -59,14 +59,6 @@ public class NoticeMockTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-//
-//    Validator validator;
-//    @BeforeEach
-//    public void init () {
-//        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
-//        validator = validat
-//    }
-
     @Test
     @DisplayName("공지사항 조회 (페이지)")
     void getPage() throws Exception {

@@ -102,14 +102,19 @@ public class BannerEnterpriseRepositoryTest {
     private BannerEnterprise setUp() {
 
         FileInfo fileInfo = FileInfo.builder().type(FileType.BANNER).build();
+        entityManager.persist(fileInfo);
 
         Banner banner = Banner.builder().fileInfo(fileInfo).startTime(LocalDateTime.now()).endTime(LocalDateTime.now()).status(BannerStatus.ACTIVE).build();
+        entityManager.persist(banner);
 
         BannerSort bannerSort = BannerSort.builder().banner(banner).name("배너이름").color("색상").build();
+        entityManager.persist(bannerSort);
 
-        Enterprise enterprise = Enterprise.builder().username("기업이름").password("기업비번").role(RoleType.ENTERPRISE).email("이메일").tel("전화번호").status(EnterpriseStatus.ACTIVE).build();
+        Enterprise enterprise = Enterprise.builder().username("기업이름").password("기업비번").role(RoleType.ACTIVE).email("이메일").tel("전화번호").status(EnterpriseStatus.ACTIVE).build();
+        entityManager.persist(enterprise);
 
         EnterpriseStoreInfo store = EnterpriseStoreInfo.builder().enterprise(enterprise).name("매장정보").address("매장주소").reservationPrice(10000).reservationTerm("예약간격").reservationCancelDay(LocalDateTime.now()).lat(20.1).lon(20.145).fileInfo(fileInfo).status(StoreStatus.OPEN).build();
+        entityManager.persist(store);
 
         var bannerEnterprise = BannerEnterprise.builder().bannerSort(bannerSort).store(store).build();
         return this.entityManager.persist(bannerEnterprise);
