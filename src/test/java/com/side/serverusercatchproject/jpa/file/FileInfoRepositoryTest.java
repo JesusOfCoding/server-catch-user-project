@@ -28,7 +28,7 @@ public class FileInfoRepositoryTest {
 
     @BeforeEach
     public void init(){
-        setUp(FileType.Image);
+        setUp(FileType.BANNER);
     }
 
 //    @Test
@@ -48,7 +48,7 @@ public class FileInfoRepositoryTest {
 
         if(optionalFileInfoList.isPresent()) {
             var result = optionalFileInfoList.get();
-            Assertions.assertEquals(result.getType(), FileType.Image);
+            Assertions.assertEquals(result.getType(), FileType.BANNER);
 
             var fileType = FileType.MENU;
             result.setType(fileType);
@@ -63,12 +63,12 @@ public class FileInfoRepositoryTest {
     @Test
     @Transactional
     void insertAndDelete() {
-        FileInfo fileInfo = setUp(FileType.Image);
+        FileInfo fileInfo = setUp(FileType.BANNER);
         Optional<FileInfo> findNotice = this.fileInfoRepository.findById(fileInfo.getId());
 
         if(findNotice.isPresent()) {
             var result = findNotice.get();
-            Assertions.assertEquals(result.getType(), FileType.Image);
+            Assertions.assertEquals(result.getType(), FileType.BANNER);
             entityManager.remove(fileInfo);
             Optional<FileInfo> deleteFileInfo = this.fileInfoRepository.findById(fileInfo.getId());
             if (deleteFileInfo.isPresent()) {

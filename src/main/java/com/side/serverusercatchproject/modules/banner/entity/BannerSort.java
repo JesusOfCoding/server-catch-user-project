@@ -2,6 +2,7 @@ package com.side.serverusercatchproject.modules.banner.entity;
 
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +20,7 @@ public class BannerSort extends BaseTime {
     @Comment("고유번호")
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @Comment("배너 정보")
     private Banner banner;
 
@@ -29,4 +30,10 @@ public class BannerSort extends BaseTime {
     @Comment("배너 탭 색")
     private String color;
 
+    @Builder
+    public BannerSort(Banner banner, String name, String color) {
+        this.banner = banner;
+        this.name = name;
+        this.color = color;
+    }
 }

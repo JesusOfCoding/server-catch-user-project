@@ -32,11 +32,7 @@ public class BannerSortRepositoryTest {
 
     @BeforeEach
     public void init() {
-        FileInfo fileInfo = setUpByFileInfo(FileType.Image);
-
-        Banner banner = setUpByBanner(fileInfo, LocalDateTime.of(2023, 04, 9, 9, 00), LocalDateTime.of(2023, 05, 9, 21, 00), BannerStatus.WAIT);
-
-        setUpByBannerSort(banner, "배너이름", "빨간색");
+        setUpByBannerSort("배너이름", "빨간색");
     }
 
     @Test
@@ -71,10 +67,8 @@ public class BannerSortRepositoryTest {
     @Test
     @Transactional
     void insertAndDelete() {
-        FileInfo fileInfo = setUpByFileInfo(FileType.Image);
-        Banner banner = setUpByBanner(fileInfo, LocalDateTime.of(2023, 04, 9, 9, 00), LocalDateTime.of(2023, 05, 9, 21, 00), BannerStatus.WAIT);
 
-        BannerSort bannerSort = setUpByBannerSort(banner, "배너이름2", "초록색");
+        BannerSort bannerSort = setUpByBannerSort("배너이름2", "초록색");
         Optional<BannerSort> findBannerSort = this.bannerSortRepository.findById(bannerSort.getId());
 
         if(findBannerSort.isPresent()) {
@@ -90,24 +84,11 @@ public class BannerSortRepositoryTest {
         }
     }
 
-    private FileInfo setUpByFileInfo(FileType fileType) {
-        var fileInfo = new FileInfo();
-        fileInfo.setType(fileType);
-        return this.entityManager.persist(fileInfo);
-    }
-
-    private Banner setUpByBanner(
-            FileInfo fileInfo, LocalDateTime startTime, LocalDateTime endTime, BannerStatus status) {
-        var banner = new Banner();
-        banner.setFileInfo(fileInfo);
-        banner.setStartTime(startTime);
-        banner.setEndTime(endTime);
-        banner.setStatus(status);
-        return this.entityManager.persist(banner);
-    }
 
     private BannerSort setUpByBannerSort(
-            Banner banner, String name, String color) {
+            String name, String color) {
+        FileInfo fileInfo = new FileInfo().builder().type(FileType.BANNER).build();
+        Banner banner = new Banner().builder().fileInfo(fileInfo).startTime(LocalDateTime.now()).endTime(LocalDateTime.now()).status(BannerStatus.ACTIVE).build();
         var bannerSort = new BannerSort();
         bannerSort.setBanner(banner);
         bannerSort.setName(name);

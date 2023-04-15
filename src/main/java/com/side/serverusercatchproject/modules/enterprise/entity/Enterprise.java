@@ -4,6 +4,7 @@ import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.enterprise.enums.EnterpriseStatus;
 import com.side.serverusercatchproject.util.type.RoleType;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,4 +40,14 @@ public class Enterprise extends BaseTime {
     @Enumerated(EnumType.STRING)
     @Comment("기업 활성화 상태")
     private EnterpriseStatus status;
+
+    @Builder
+    public Enterprise(String username, String password, RoleType role, String email, String tel, EnterpriseStatus status) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.email = email;
+        this.tel = tel;
+        this.status = status;
+    }
 }

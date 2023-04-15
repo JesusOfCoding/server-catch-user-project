@@ -30,7 +30,7 @@ public class FileRepositoryTest {
 
     @BeforeEach
     public void init(){
-        FileInfo fileInfo = setUpByFileInfo(FileType.Image);
+        FileInfo fileInfo = setUpByFileInfo(FileType.BANNER);
         setUpByFile(fileInfo, "image", "jsadjwnqjkdnjskandjskandjka", FileStatus.WAIT);
     }
 
@@ -66,7 +66,7 @@ public class FileRepositoryTest {
     @Test
     @Transactional
     void insertAndDelete() {
-        FileInfo fileInfo = setUpByFileInfo(FileType.Image);
+        FileInfo fileInfo = setUpByFileInfo(FileType.BANNER);
         File file = setUpByFile(fileInfo, "image", "jsadjwnqjkdnjskandjskandjka", FileStatus.WAIT);
         Optional<File> findFile = this.fileRepository.findById(file.getId());
 
@@ -99,7 +99,7 @@ public class FileRepositoryTest {
     }
 
      File createFileInfo() {
-        FileInfo fileInfo = setUpByFileInfo(FileType.Image);
+        FileInfo fileInfo = setUpByFileInfo(FileType.BANNER);
         File file = setUpByFile(fileInfo, "image", "jsadjwnqjkdnjskandjskandjka", FileStatus.WAIT);
         return file;
     }

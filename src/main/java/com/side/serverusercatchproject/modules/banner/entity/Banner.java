@@ -5,10 +5,7 @@ import com.side.serverusercatchproject.modules.file.entity.FileInfo;
 import com.side.serverusercatchproject.modules.banner.enums.BannerStatus;
 import com.side.serverusercatchproject.util.StringToLocalDateTime;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Comment;
 
 import java.sql.Timestamp;
@@ -27,7 +24,8 @@ public class Banner extends BaseTime {
     private Integer id;
 
     @Comment("이벤트 사진")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "file_info_id")
     private FileInfo fileInfo;
 
     @Comment("이벤트 시작 시간")
@@ -39,4 +37,12 @@ public class Banner extends BaseTime {
     @Enumerated(EnumType.STRING)
     @Comment("이벤트 활성화 상태")
     private BannerStatus status;
+
+    @Builder
+    public Banner(FileInfo fileInfo, LocalDateTime startTime, LocalDateTime endTime, BannerStatus status) {
+        this.fileInfo = fileInfo;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.status = status;
+    }
 }

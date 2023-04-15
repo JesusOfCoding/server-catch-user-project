@@ -2,6 +2,7 @@ package com.side.serverusercatchproject.modules.enterprise.entity;
 
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,4 +43,15 @@ public class EnterpriseStoreCalendar extends BaseTime {
 
     @Comment("영업 여부")
     private Boolean isOpen;
+
+    @Builder
+    public EnterpriseStoreCalendar(EnterpriseStoreInfo store, String day, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime startBreakTime, LocalDateTime endBreakTime, Boolean isOpen) {
+        this.store = store;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.startBreakTime = startBreakTime;
+        this.endBreakTime = endBreakTime;
+        this.isOpen = isOpen;
+    }
 }

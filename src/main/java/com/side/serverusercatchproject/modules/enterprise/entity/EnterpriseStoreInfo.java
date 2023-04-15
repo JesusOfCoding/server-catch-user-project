@@ -4,6 +4,7 @@ import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.file.entity.FileInfo;
 import com.side.serverusercatchproject.modules.enterprise.enums.StoreStatus;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +23,7 @@ public class EnterpriseStoreInfo extends BaseTime {
     @Comment("고유번호")
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @Comment("기업 정보")
     private Enterprise enterprise;
 
@@ -48,10 +49,25 @@ public class EnterpriseStoreInfo extends BaseTime {
     private Double lon;
 
     @Comment("매장 사진 정보")
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private FileInfo fileInfo;
 
     @Enumerated(EnumType.STRING)
     @Comment("매장 활성화 상태")
     private StoreStatus status;
+
+    @Builder
+    public EnterpriseStoreInfo(Enterprise enterprise, String name, String address, Integer reservationPrice
+            , String reservationTerm, LocalDateTime reservationCancelDay, Double lat, Double lon, FileInfo fileInfo, StoreStatus status) {
+        this.enterprise = enterprise;
+        this.name = name;
+        this.address = address;
+        this.reservationPrice = reservationPrice;
+        this.reservationTerm = reservationTerm;
+        this.reservationCancelDay = reservationCancelDay;
+        this.lat = lat;
+        this.lon = lon;
+        this.fileInfo = fileInfo;
+        this.status = status;
+    }
 }

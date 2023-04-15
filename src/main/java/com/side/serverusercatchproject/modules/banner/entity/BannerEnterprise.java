@@ -3,10 +3,7 @@ package com.side.serverusercatchproject.modules.banner.entity;
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.enterprise.entity.EnterpriseStoreInfo;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Comment;
 
 @Entity
@@ -22,11 +19,16 @@ public class BannerEnterprise extends BaseTime {
     private Integer id;
 
     @Comment("배너 탭 정보")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private BannerSort bannerSort;
 
     @Comment("매장 정보")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private EnterpriseStoreInfo store;
 
+    @Builder
+    public BannerEnterprise(BannerSort bannerSort, EnterpriseStoreInfo store) {
+        this.bannerSort = bannerSort;
+        this.store = store;
+    }
 }

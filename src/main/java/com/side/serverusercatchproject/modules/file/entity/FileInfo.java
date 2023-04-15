@@ -3,10 +3,7 @@ package com.side.serverusercatchproject.modules.file.entity;
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.file.enums.FileType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Comment;
 
 @Entity
@@ -18,9 +15,15 @@ import org.hibernate.annotations.Comment;
 public class FileInfo extends BaseTime {
     @Id
     @Comment("고유번호")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Enumerated(EnumType.STRING)
     @Comment("파일 출처")
     private FileType type;
+
+    @Builder
+    public FileInfo(FileType type) {
+        this.type = type;
+    }
 }

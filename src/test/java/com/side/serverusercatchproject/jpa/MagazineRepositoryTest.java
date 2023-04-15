@@ -31,7 +31,7 @@ public class MagazineRepositoryTest {
     @BeforeEach
     public void init() {
         FileInfo fileInfo = new FileInfo();
-        fileInfo.setType(FileType.Image);
+        fileInfo.setType(FileType.BANNER);
         fileInfo.setId(3);
         setUp("공지사항", "내용", fileInfo, null, MagazineStatus.WAIT);
     }
