@@ -1,16 +1,30 @@
 package com.side.serverusercatchproject.modules.review.entity;
 
+import org.hibernate.annotations.Comment;
+
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.enterprise.entity.EnterpriseStoreInfo;
 import com.side.serverusercatchproject.modules.file.entity.FileInfo;
+import com.side.serverusercatchproject.modules.review.dto.ReviewDTO;
 import com.side.serverusercatchproject.modules.review.enums.ReviewStatus;
+import com.side.serverusercatchproject.modules.review.response.ReviewResponse;
 import com.side.serverusercatchproject.modules.user.entity.User;
-import jakarta.persistence.*;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Comment;
 
 @Entity
 @Getter
@@ -66,5 +80,13 @@ public class Review extends BaseTime {
         this.status = status;
     }
 
-    
+    public ReviewDTO toDTO() {
+        return new ReviewDTO(id, user.toDTO(), store.toDTO(), content, tasteRating, moodRating, serviceRating,
+                fileInfo.toDTO(), status.name());
+    }
+
+    public ReviewResponse toResponse() {
+        return new ReviewResponse(id, user.toDTO(), store.toDTO(), content, tasteRating, moodRating, serviceRating, fileInfo.toDTO(), status.name());
+    }
+
 }

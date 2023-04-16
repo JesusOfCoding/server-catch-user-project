@@ -1,4 +1,7 @@
 spring:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
   sql:
     init:
       mode: always
@@ -13,3 +16,6 @@ server:
   servlet:
     encoding:
       force-response: true
+
+      
+  

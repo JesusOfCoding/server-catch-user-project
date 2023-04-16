@@ -17,7 +17,7 @@ public record EnterpriseStoreInfoDTO(
 
         String reservationTerm,
 
-        LocalDateTime reservationCancelDay,
+        String reservationCancelDay,
 
         Double lat,
 

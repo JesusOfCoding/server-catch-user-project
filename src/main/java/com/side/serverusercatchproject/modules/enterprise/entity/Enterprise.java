@@ -1,6 +1,7 @@
 package com.side.serverusercatchproject.modules.enterprise.entity;
 
 import com.side.serverusercatchproject.common.jpa.BaseTime;
+import com.side.serverusercatchproject.modules.enterprise.dto.EnterpriseDTO;
 import com.side.serverusercatchproject.modules.enterprise.enums.EnterpriseStatus;
 import com.side.serverusercatchproject.util.type.RoleType;
 import jakarta.persistence.*;
@@ -42,12 +43,17 @@ public class Enterprise extends BaseTime {
     private EnterpriseStatus status;
 
     @Builder
-    public Enterprise(String username, String password, RoleType role, String email, String tel, EnterpriseStatus status) {
+    public Enterprise(Integer id, String username, String password, RoleType role, String email, String tel, EnterpriseStatus status) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
         this.email = email;
         this.tel = tel;
         this.status = status;
+    }
+
+    public EnterpriseDTO toDTO() {
+        return new EnterpriseDTO(id, username, password, role, email, tel, status);
     }
 }
