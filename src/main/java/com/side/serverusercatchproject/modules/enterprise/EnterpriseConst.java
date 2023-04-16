@@ -1,4 +1,4 @@
-package com.side.serverusercatchproject.modules;
+package com.side.serverusercatchproject.modules.enterprise;
 
 public interface EnterpriseConst {
 

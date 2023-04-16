@@ -1,7 +1,7 @@
 package com.side.serverusercatchproject.modules.enterprise.controller;
 
 import com.side.serverusercatchproject.common.exception.Exception400;
-import com.side.serverusercatchproject.modules.EnterpriseConst;
+import com.side.serverusercatchproject.modules.enterprise.EnterpriseConst;
 import com.side.serverusercatchproject.modules.enterprise.dto.EnterpriseDTO;
 import com.side.serverusercatchproject.modules.enterprise.entity.Enterprise;
 import com.side.serverusercatchproject.modules.enterprise.request.EnterpriseSaveRequest;
@@ -15,8 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/enterprise")
