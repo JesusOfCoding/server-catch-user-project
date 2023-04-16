@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class MagazineController {
     private final MagazineService magazineService;
 
-    private final MagazineRepository magazineRepository;
+//    private final MagazineRepository magazineRepository;
 
-    public MagazineController(MagazineService magazineService, MagazineRepository magazineRepository) {
+    public MagazineController(MagazineService magazineService) {
         this.magazineService = magazineService;
-        this.magazineRepository = magazineRepository;
+//        this.magazineRepository = magazineRepository;
     }
 
     @GetMapping

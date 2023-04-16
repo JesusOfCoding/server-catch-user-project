@@ -21,7 +21,7 @@ public class StoreEvent extends BaseTime {
     private Integer id;
 
     @Comment("이벤트 메뉴 정보")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private EnterpriseStoreMenu menu;
 
     @Comment("이벤트 제목")
@@ -30,4 +30,10 @@ public class StoreEvent extends BaseTime {
     @Enumerated(EnumType.STRING)
     @Comment("이벤트 활성화 상태")
     private StoreEventStatus status;
+
+    public StoreEvent(EnterpriseStoreMenu menu, String title, StoreEventStatus status) {
+        this.menu = menu;
+        this.title = title;
+        this.status = status;
+    }
 }

@@ -36,6 +36,7 @@ public class NoticeRepositoryTest {
     }
 
     @Test
+    @Transactional
     void selectAll() {
         var notices = noticeRepository.findAll();
         Assertions.assertNotEquals(notices.size(), 0);

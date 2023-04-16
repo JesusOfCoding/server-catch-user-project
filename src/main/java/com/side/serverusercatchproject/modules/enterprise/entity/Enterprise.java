@@ -3,6 +3,8 @@ package com.side.serverusercatchproject.modules.enterprise.entity;
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.enterprise.dto.EnterpriseDTO;
 import com.side.serverusercatchproject.modules.enterprise.enums.EnterpriseStatus;
+import com.side.serverusercatchproject.modules.enterprise.response.EnterpriseResponse;
+import com.side.serverusercatchproject.modules.notice.response.NoticeResponse;
 import com.side.serverusercatchproject.util.type.RoleType;
 import jakarta.persistence.*;
 import lombok.Builder;
