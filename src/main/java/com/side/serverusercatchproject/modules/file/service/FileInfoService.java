@@ -27,18 +27,13 @@ public class FileInfoService {
         return fileInfoRepository.findAll(pageable);
     }
 
-    public void getFileInfo(Integer id) {
-
-
+    public Optional<FileInfo> getFileInfo(Integer id) {
+        return fileInfoRepository.findById(id);
     }
 
-//    public Optional<FileInfo> getFileInfo(Integer id) {
-//        return fileInfoRepository.findById(id);
-//    }
-//
-//    @Transactional
-//    public FileInfo save(FileInfoSaveRequest request) {
-//        return fileInfoRepository.save(request.toEntity());
-//    }
+    @Transactional
+    public FileInfo save(FileInfoSaveRequest request) {
+        return fileInfoRepository.save(request.toEntity());
+    }
 
 }

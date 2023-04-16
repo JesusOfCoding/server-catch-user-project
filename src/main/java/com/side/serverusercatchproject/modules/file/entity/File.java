@@ -2,7 +2,10 @@ package com.side.serverusercatchproject.modules.file.entity;
 
 
 import com.side.serverusercatchproject.common.jpa.BaseTime;
+import com.side.serverusercatchproject.modules.file.dto.FileDTO;
+import com.side.serverusercatchproject.modules.file.dto.FileInfoDTO;
 import com.side.serverusercatchproject.modules.file.enums.FileStatus;
+import com.side.serverusercatchproject.modules.file.response.FileResponse;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -48,4 +51,11 @@ public class File extends BaseTime {
     @Comment("사진 활성화 상태")
     private FileStatus status;
 
+    public FileDTO toDTO() {
+        return new FileDTO(id, fileInfo.toDTO(), fileName, fileUrl, status.name());
+    }
+
+    public FileResponse toResponse() {
+        return new FileResponse(id, fileInfo.toDTO(), fileName, fileUrl, status.name());
+    }
 }
