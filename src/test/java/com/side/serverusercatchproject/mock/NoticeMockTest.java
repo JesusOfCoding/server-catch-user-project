@@ -43,6 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 //@SpringBootTest
 @WebMvcTest(NoticeController.class)
+@MockBean(JpaMetamodelMappingContext.class)
 public class NoticeMockTest {
 
     @Autowired
