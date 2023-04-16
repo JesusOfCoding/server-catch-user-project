@@ -12,9 +12,6 @@ public record EnterpriseUpdateRequest(
         @NotBlank(message = "비밀번호를 입력해주세요")
         String password,
 
-        @NotBlank(message = "권한을 입력해주세요")
-        RoleType role,
-
         @NotBlank(message = "이메일을 입력해주세요")
         String email,
 
