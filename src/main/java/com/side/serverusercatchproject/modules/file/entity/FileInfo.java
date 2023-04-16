@@ -1,5 +1,6 @@
 package com.side.serverusercatchproject.modules.file.entity;
 
+<<<<<<< HEAD
 import com.side.serverusercatchproject.common.jpa.BaseTime;
 import com.side.serverusercatchproject.modules.file.dto.FileInfoDTO;
 import com.side.serverusercatchproject.modules.file.enums.FileType;
@@ -7,7 +8,26 @@ import com.side.serverusercatchproject.modules.file.response.FileInfoResponse;
 import com.side.serverusercatchproject.modules.notice.response.NoticeResponse;
 import jakarta.persistence.*;
 import lombok.*;
+=======
+>>>>>>> b5f4183 (Review Mock Test Code 구현)
 import org.hibernate.annotations.Comment;
+
+import com.side.serverusercatchproject.common.jpa.BaseTime;
+import com.side.serverusercatchproject.modules.file.dto.FileInfoDTO;
+import com.side.serverusercatchproject.modules.file.enums.FileType;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -33,8 +53,11 @@ public class FileInfo extends BaseTime {
     public FileInfoDTO toDTO() {
         return new FileInfoDTO(id, type.name());
     }
+<<<<<<< HEAD
 
     public FileInfoResponse toResponse() {
         return new FileInfoResponse(id, type.name());
     }
+=======
+>>>>>>> b5f4183 (Review Mock Test Code 구현)
 }

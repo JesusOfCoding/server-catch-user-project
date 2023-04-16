@@ -8,10 +8,6 @@ import com.side.serverusercatchproject.modules.notice.enums.NoticeStatus;
 import com.side.serverusercatchproject.modules.notice.request.NoticeSaveRequest;
 import com.side.serverusercatchproject.modules.notice.request.NoticeUpdateRequest;
 import com.side.serverusercatchproject.modules.notice.service.NoticeService;
-import jakarta.validation.ConstraintValidatorContext;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -39,7 +35,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -48,7 +43,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 //@SpringBootTest
 @WebMvcTest(NoticeController.class)
-@MockBean(JpaMetamodelMappingContext.class)
 public class NoticeMockTest {
 
     @Autowired

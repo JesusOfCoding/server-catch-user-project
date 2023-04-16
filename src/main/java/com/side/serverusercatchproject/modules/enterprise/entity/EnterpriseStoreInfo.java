@@ -1,16 +1,29 @@
 package com.side.serverusercatchproject.modules.enterprise.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.Comment;
+
 import com.side.serverusercatchproject.common.jpa.BaseTime;
-import com.side.serverusercatchproject.modules.file.entity.FileInfo;
+import com.side.serverusercatchproject.modules.enterprise.dto.EnterpriseStoreInfoDTO;
 import com.side.serverusercatchproject.modules.enterprise.enums.StoreStatus;
-import jakarta.persistence.*;
+import com.side.serverusercatchproject.modules.file.entity.FileInfo;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Comment;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -59,8 +72,9 @@ public class EnterpriseStoreInfo extends BaseTime {
     private StoreStatus status;
 
     @Builder
-    public EnterpriseStoreInfo(Enterprise enterprise, String name, String address, Integer reservationPrice
+    public EnterpriseStoreInfo(Integer id, Enterprise enterprise, String name, String address, Integer reservationPrice
             , String reservationTerm, LocalDateTime reservationCancelDay, Double lat, Double lon, FileInfo fileInfo, StoreStatus status) {
+        this.id = id;
         this.enterprise = enterprise;
         this.name = name;
         this.address = address;
@@ -71,5 +85,9 @@ public class EnterpriseStoreInfo extends BaseTime {
         this.lon = lon;
         this.fileInfo = fileInfo;
         this.status = status;
+    }
+
+    public EnterpriseStoreInfoDTO toDTO() {
+        return new EnterpriseStoreInfoDTO(id, enterprise.toDTO(), name, address, reservationPrice, reservationTerm, reservationCancelDay.toString(), lat, lon, fileInfo.toDTO(), status.name());
     }
 }
