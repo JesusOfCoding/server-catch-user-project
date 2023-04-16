@@ -20,11 +20,11 @@ public class EnterpriseStoreCategory extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @Comment("매장 정보")
     private EnterpriseStoreInfo store;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @Comment("등록 카테고리")
     private Category category;
 

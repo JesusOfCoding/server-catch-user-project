@@ -41,7 +41,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-//@SpringBootTest
 @WebMvcTest(NoticeController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 public class NoticeMockTest {

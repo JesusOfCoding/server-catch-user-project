@@ -22,7 +22,7 @@ public class EnterpriseStoreCalendar extends BaseTime {
     private Integer id;
 
     @Comment("매장 정보")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private EnterpriseStoreInfo store;
     
     @Comment("요일")
