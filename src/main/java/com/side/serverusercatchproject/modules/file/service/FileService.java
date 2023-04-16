@@ -40,14 +40,18 @@ public class FileService {
 
     @Transactional
     public File save(FileSaveRequest request) {
-        return fileRepository.save(request.toEntity());
+        return null;
     }
 
-//    public FileResponse update(FileUpdateRequest request, File file) {
-//        file.setFileInfo(FileInfo.builder().type(FileType.valueOf(request.fileInfo().type())).build());
-//        file.setFileUrl(request.fileUrl());
-//        file.setFileName(request.fileName());
-//        file.setStatus(FileStatus.valueOf(request.status()));
-//        return fileRepository.save(file);
-//    }
+    public File update(FileUpdateRequest request, File file) {
+        file.setFileUrl(request.fileUrl());
+        file.setFileName(request.fileName());
+        file.setStatus(FileStatus.valueOf(request.status()));
+        return fileRepository.save(file);
+    }
+
+    @Transactional
+    public void delete(File file) {
+        fileRepository.delete(file);
+    }
 }

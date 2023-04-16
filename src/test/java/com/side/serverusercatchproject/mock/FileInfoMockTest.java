@@ -137,7 +137,6 @@ public class FileInfoMockTest {
     @DisplayName("파일정보 저장 실패")
     void saveFileInfoFail() throws Exception {
 
-
         // given
         FileInfoSaveRequest request = new FileInfoSaveRequest("");
 

@@ -7,9 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 
 public record FileUpdateRequest(
 
-        @NotBlank(message = "파일 출처를 입력해주세요")
-        FileInfoDTO fileInfo,
-
         @NotBlank(message = "파일 이름을 입력해주세요")
         String fileName,
 

@@ -67,27 +67,41 @@ public class FileController {
             throw new Exception400(error.getAllErrors().get(0).getDefaultMessage());
         }
 
-        var fileInfo = fileService.save(request);
-        return ResponseEntity.ok(fileInfo.toResponse());
+        var file = fileService.save(request);
+        return ResponseEntity.ok(file.toResponse());
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<FileResponse> updateFile (
-//            @Valid @RequestBody FileUpdateRequest request,
-//            Errors error,
-//            @PathVariable Integer id
-//    ) {
-//        if (error.hasErrors()) {
-//            throw new Exception400(error.getAllErrors().get(0).getDefaultMessage());
-//        }
-//
-//        var optionalFile = fileService.getFile(id);
-//        if (optionalFile.isEmpty()) {
-//            throw new Exception400(FileConst.notfound);
-//        }
-//
-//        var file = fileService.update(request, optionalFile.get());
-//        return ResponseEntity.ok(file.toResponse());
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<FileResponse> updateFile (
+            @Valid @RequestBody FileUpdateRequest request,
+            Errors error,
+            @PathVariable Integer id
+    ) {
+        if (error.hasErrors()) {
+            throw new Exception400(error.getAllErrors().get(0).getDefaultMessage());
+        }
+
+        var optionalFile = fileService.getFile(id);
+        if (optionalFile.isEmpty()) {
+            throw new Exception400(FileConst.notfound);
+        }
+
+        var file = fileService.update(request, optionalFile.get());
+        return ResponseEntity.ok(file.toResponse());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> saveNotice (
+            @PathVariable Integer id
+    ) {
+        var optionalFile = fileService.getFile(id);
+        if (optionalFile.isEmpty()) {
+            throw new Exception400(NoticeConst.notFound);
+        }
+
+        fileService.delete(optionalFile.get());
+
+        return ResponseEntity.ok("삭제가 완료되었습니다.");
+    }
 
 }

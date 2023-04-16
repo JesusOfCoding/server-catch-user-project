@@ -8,6 +8,7 @@ import com.side.serverusercatchproject.modules.file.enums.FileStatus;
 import com.side.serverusercatchproject.modules.file.response.FileResponse;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -50,6 +51,15 @@ public class File extends BaseTime {
     @Enumerated(EnumType.STRING)
     @Comment("사진 활성화 상태")
     private FileStatus status;
+
+    @Builder
+    public File(Integer id, FileInfo fileInfo, String fileName, String fileUrl, FileStatus status) {
+        this.id = id;
+        this.fileInfo = fileInfo;
+        this.fileName = fileName;
+        this.fileUrl = fileUrl;
+        this.status = status;
+    }
 
     public FileDTO toDTO() {
         return new FileDTO(id, fileInfo.toDTO(), fileName, fileUrl, status.name());
