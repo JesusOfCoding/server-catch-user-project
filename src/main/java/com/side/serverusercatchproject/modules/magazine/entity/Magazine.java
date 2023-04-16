@@ -42,6 +42,7 @@ public class Magazine extends BaseTime {
     @Comment("매거진 활성화 상태")
     private MagazineStatus status;
 
+
 //    public MagazineDTO toDto() {
 //          return new MagazineDTO(title, content, fileInfo, store, status);
 //        return ;
